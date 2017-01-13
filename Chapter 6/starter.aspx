@@ -45,6 +45,12 @@
             </UpdateParameters>
         </asp:SqlDataSource>
     
+        <asp:SqlDataSource ID="SqlDataSourceWithQueryString" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Customers] WHERE ([Country] = @Country)">
+            <SelectParameters>
+                <asp:QueryStringParameter Name="Country" QueryStringField="country" Type="String" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    
         <asp:SqlDataSource ID="SqlDataSourceWithSessionVariable" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Customers] WHERE ([Country] = @Country)">
             <SelectParameters>
                 <asp:SessionParameter Name="Country" SessionField="strCountry" Type="String" />
@@ -117,6 +123,26 @@
         </asp:DetailsView>
         <br />
         <asp:Button ID="Button3" runat="server" Text="Button" />
+    
+        <br />
+        <br />
+        <asp:DetailsView ID="DetailsView4" runat="server" AllowPaging="True" AutoGenerateRows="False" DataKeyNames="CustomerID" DataSourceID="SqlDataSourceWithQueryString" EnablePagingCallbacks="True" Height="50px" Width="125px">
+            <Fields>
+                <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" ReadOnly="True" SortExpression="CustomerID" />
+                <asp:BoundField DataField="CompanyName" HeaderText="CompanyName" SortExpression="CompanyName" />
+                <asp:BoundField DataField="ContactName" HeaderText="ContactName" SortExpression="ContactName" />
+                <asp:BoundField DataField="ContactTitle" HeaderText="ContactTitle" SortExpression="ContactTitle" />
+                <asp:BoundField DataField="Address" HeaderText="Address" SortExpression="Address" />
+                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
+                <asp:BoundField DataField="Region" HeaderText="Region" SortExpression="Region" />
+                <asp:BoundField DataField="PostalCode" HeaderText="PostalCode" SortExpression="PostalCode" />
+                <asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" />
+                <asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" />
+                <asp:BoundField DataField="Fax" HeaderText="Fax" SortExpression="Fax" />
+            </Fields>
+        </asp:DetailsView>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/starter.aspx?country=UK">HyperLink</asp:HyperLink>
+        <br />
     
     </div>
         <br />
